@@ -1,0 +1,16 @@
+<div class="category_child_list">
+    <?php
+    // @codingStandardsIgnoreFile
+
+    /** @var Snowdog\Menu\Block\NodeType\CategoryChild $block */
+    $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+    $categoryFactory = $objectManager->get('\Magento\Catalog\Model\CategoryFactory');
+    $categoryId = $block->getContent();
+    $category = $categoryFactory->create()->load($categoryId);
+    foreach ($category->getChildrenCategories() as $child) :
+        if ($child->getIsActive()) :
+            echo '<div class="category_child"><a href="' . $child->getUrl() . '">' . $child->getName() . '</a></div>';
+        endif;
+    endforeach;
+    ?>
+</div>
