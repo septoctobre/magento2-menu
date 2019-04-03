@@ -8,7 +8,7 @@
     $categoryId = $block->getContent();
     $category = $categoryFactory->create()->load($categoryId);
     foreach ($category->getChildrenCategories() as $child) :
-        if ($child->getIsActive()) :
+        if ($child->getIsActive() && $child->getIncludeInMenu()) :
             echo '<div class="category_child"><a href="' . $child->getUrl() . '">' . $child->getName() . '</a></div>';
         endif;
     endforeach;
